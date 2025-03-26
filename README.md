@@ -1,4 +1,3 @@
-Here is the `README.md` file including details about your three scripts:  
 
 ---
 
