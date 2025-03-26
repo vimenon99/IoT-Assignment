@@ -1,30 +1,25 @@
-Here’s how you can structure your **GitHub repository description** and `README.md` file for your IoT project.  
+Here is the `README.md` file including details about your three scripts:  
 
 ---
-
-### **GitHub Repository Description:**
-> **IoT Environmental Sensor Data System**  
-> This project retrieves environmental sensor data from ThingSpeak and displays it on a Flask-based web application. It simulates sensor readings and updates the ThingSpeak channel at regular intervals. The frontend dynamically fetches and presents the latest sensor data.  
-
----
-
-### **README.md**  
-Save this content as `README.md` in your GitHub repository.  
 
 ```md
-# IoT Environmental Sensor Data System
+# IoT Environmental Sensor Data System  
 
 ## Project Overview  
-This project is an IoT-based system that collects, processes, and displays environmental sensor data from **ThingSpeak**. The system simulates sensor readings (temperature, humidity, and CO2 levels) and updates the ThingSpeak channel at regular intervals. A **Flask web application** retrieves and visualizes the data dynamically.
+This project is an IoT-based system that collects, processes, and displays environmental sensor data from **ThingSpeak**. It consists of three main components:  
+
+1. **api.py** - Simulates and sends random sensor data to ThingSpeak.  
+2. **iot.py** - Fetches the latest sensor data and integrates it into a Flask web application.  
+3. **task3.py** - Retrieves the sensor data recorded in the last 5 hours from ThingSpeak and displays it on the web application.  
 
 ---
 
 ## Features  
-✔️ Collects real-time environmental data (simulated)  
-✔️ Sends data to ThingSpeak using its API  
-✔️ Fetches the latest 5-hour data from ThingSpeak  
-✔️ Displays sensor data on a Flask-based web interface  
-✔️ Uses JavaScript to dynamically update the webpage  
+✔️ Simulates real-time environmental sensor data  
+✔️ Sends data to ThingSpeak API at regular intervals  
+✔️ Fetches and displays the latest sensor data dynamically using Flask  
+✔️ Retrieves data from the past 5 hours and presents it in a user-friendly format  
+✔️ HTML, CSS, and JavaScript are integrated directly within the Python application  
 
 ---
 
@@ -45,33 +40,40 @@ source venv/bin/activate  # macOS/Linux
 
 ### **3. Install Dependencies**  
 ```sh
-pip install -r requirements.txt
+pip install flask, requests,  paho-mqqt
 ```
 
 ### **4. Set Up ThingSpeak API Key**  
-- Create a ThingSpeak channel and get the **API Key**.
-- Update the Python script (`sensor_data.py`) with your **ThingSpeak Write API Key**.
+- Create a ThingSpeak channel and obtain the **API Key**.
+- Update **api.py**, **iot.py**, and **task3.py** with your **ThingSpeak API Keys**.
 
 ### **5. Run the Sensor Data Simulation**  
 ```sh
-python sensor_data.py
+python api.py
 ```
 
-### **6. Start the Flask Web Application**  
+### **6. Start the Flask Web Application (Latest Data Retrieval)**  
 ```sh
-python app.py
+python iot.py
 ```
 - Open your browser and visit: `http://127.0.0.1:5000/`
+
+### **7. Retrieve and Display the Last 5 Hours of Sensor Data**  
+```sh
+python task3.py
+```
+- This will fetch data from the past 5 hours and integrate it into the Flask web application.
 
 ---
 
 ## File Structure  
 ```
 IoT-Environmental-Sensor/
-│── app.py               # Flask Web App
-│── sensor_data.py       # Script to send data to ThingSpeak
+│── api.py               # Sends random sensor data to ThingSpeak
+│── iot.py               # Flask app displaying latest data
+│── task3.py             # Retrieves last 5 hours of data
 │── templates/           
-│   ├── index.html       # Webpage to display sensor data
+│   ├── index.html       # Web interface to display data
 │── static/              
 │   ├── style.css        # Styling for the webpage
 │── requirements.txt     # Dependencies
@@ -83,11 +85,6 @@ IoT-Environmental-Sensor/
 ## Technologies Used  
 🔹 Python (Flask)  
 🔹 ThingSpeak API  
-🔹 HTML, CSS, JavaScript  
+🔹 HTML, CSS, JavaScript (Integrated into Python)  
 🔹 Virtual Environment (venv)  
-
----
-
-## Reflection  
-During this project, I encountered issues with fetching real-time data due to API rate limits. By optimizing request intervals and handling errors properly, I improved data retrieval reliability. This project helped me understand **IoT data flow, API integration, and web development.**
 
